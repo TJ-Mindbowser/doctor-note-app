@@ -17,13 +17,75 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: #424242;
+}
+
+.wrapper {
+  background-color: #47484a;
+}
+
+.patient {
+  background-color: #262626;
+  /* width: 30%; */
+}
+
+.patient-title span {
+  color: #7f7f7f;
+}
+
+.patient-list p:hover {
+  background-color: #353739;
+  cursor: pointer;
+}
+
+.notes-list:hover {
+  background-color: #353739;
+  cursor: pointer;
+}
+
+.notes {
+  background-color: #1f1f1f;
+  overflow-y: auto;
+}
+
+.notes-title {
+}
+
+.note-details {
+  background-color: #1f1f1f;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #000000;
+}
+::-webkit-scrollbar-track {
+  background: #666666;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 @layer utilities {
