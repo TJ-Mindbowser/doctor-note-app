@@ -67,8 +67,8 @@ export default function Notes({ patient, handleAddNote }) {
     setRecentNotes(patient?.recentNotes || []);
   };
   useEffect(() => {
-    setNotes(patient?.PatientNote || []);
-    setRecentNotes(patient?.recentNotes || []);
+    setNotes(patient?.PatientNote?.reverse() || []);
+    setRecentNotes(patient?.recentNotes?.reverse() || []);
   }, [patient]);
 
   return (
@@ -137,7 +137,7 @@ export default function Notes({ patient, handleAddNote }) {
                     </>
                   );
                 })
-              : notes.sort().map((note, index) => {
+              : notes.map((note, index) => {
                   return (
                     <>
                       <div
@@ -177,7 +177,7 @@ export default function Notes({ patient, handleAddNote }) {
                         showNoteDetail(note);
                         setSelectedNote(index);
                       }}
-                      className={`notes-list text-white mt-3 p-3 rounded-xl ${
+                      className={`notes-list text-white mt-3 p-9 rounded-xl ${
                         index === selectedNote ? "list-active" : ""
                       }`}
                     >
