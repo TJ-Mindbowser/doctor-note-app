@@ -74,7 +74,7 @@ export default function Notes({ patient, handleAddNote }) {
   return (
     <>
       <div className="notes flex-1 h-full flex-grow border-x border-[#4A4B4B]">
-        <div className="flex gap-3 border-b-2 border-[#4A4B4B] p-4">
+        <div className="flex gap-3 border-b-2 border-[#4A4B4B] p-4 items-center">
           <div className="notes-title flex-1">
             <p className="text-2xl font-medium text-white tracking-tight">
               {!showRecentNotes ? "Notes" : "Recent Notes"}
@@ -93,9 +93,10 @@ export default function Notes({ patient, handleAddNote }) {
               />
               <RecentIcon showRecent={() => showRecent()} />
               <button
+                style={{ padding: "12px" }}
                 type="button"
                 onClick={hideNoteDetail}
-                class="text-white flex items-center gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                class="text-white flex items-center gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
               >
                 <AddIcon /> New Note
               </button>
@@ -115,7 +116,7 @@ export default function Notes({ patient, handleAddNote }) {
                           showNoteDetail(note);
                           setSelectedNote(index);
                         }}
-                        className={`notes-list text-white mt-3 p-9 rounded-xl ${
+                        className={`notes-list text-white rounded-xl ${
                           index === selectedNote ? "list-active" : ""
                         }`}
                       >
@@ -130,9 +131,7 @@ export default function Notes({ patient, handleAddNote }) {
                         </div>
                       </div>
                       <hr
-                        className={`${
-                          index === selectedNote ? "invisible" : ""
-                        }`}
+                        className={`${index === selectedNote ? "hidden" : ""}`}
                       />
                     </>
                   );
@@ -146,7 +145,7 @@ export default function Notes({ patient, handleAddNote }) {
                           showNoteDetail(note);
                           setSelectedNote(index);
                         }}
-                        className={`notes-list text-white mt-3 p-9 rounded-xl ${
+                        className={`notes-list text-white p-9 rounded-xl ${
                           index === selectedNote ? "list-active" : ""
                         }`}
                       >
@@ -161,9 +160,7 @@ export default function Notes({ patient, handleAddNote }) {
                         </div>
                       </div>
                       <hr
-                        className={`${
-                          index === selectedNote ? "invisible" : ""
-                        }`}
+                        className={`${index === selectedNote ? "hidden" : ""}`}
                       />
                     </>
                   );
@@ -177,7 +174,7 @@ export default function Notes({ patient, handleAddNote }) {
                         showNoteDetail(note);
                         setSelectedNote(index);
                       }}
-                      className={`notes-list text-white mt-3 p-9 rounded-xl ${
+                      className={`notes-list text-white p-9 rounded-xl ${
                         index === selectedNote ? "list-active" : ""
                       }`}
                     >
@@ -192,7 +189,7 @@ export default function Notes({ patient, handleAddNote }) {
                       </div>
                     </div>
                     <hr
-                      className={`${index === selectedNote ? "invisible" : ""}`}
+                      className={`${index === selectedNote ? "hidden" : ""}`}
                     />
                   </>
                 );

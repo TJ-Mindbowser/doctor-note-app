@@ -57,18 +57,20 @@ export default function Add({ handleAddNote }) {
               <span className="text-[#7F7F7F]">Added on :</span> {currentDate()}
             </div>
           </div>
-          <div className="notes-meta flex gap-2 justify-between">
+          <div className="notes-meta flex items-center gap-2 justify-between">
             <button
               onClick={handleForm}
               type="button"
-              class="text-white gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2"
+              style={{ padding: "12px" }}
+              class="text-white gap-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2  dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-sm px-5 py-2.5 text-center inline-flex items-center me-2 "
             >
               <DownloadIcon className="" /> Save
             </button>
             <button
               type="button"
+              style={{ padding: "12px", color: "#7F7F7F" }}
               onClick={resetForm}
-              class="text-white gap-2 bg-grey-700 hover:bg-grey-800 border border-slate-300 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-sm px-5 py-2.5 text-center inline-flex items-center me-2 mb-2"
+              class="text-white gap-2 bg-grey-700 hover:bg-grey-800 border border-[#7F7F7F] focus:ring-4 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 text-sm px-5 py-2.5 text-center inline-flex items-center me-2"
             >
               <DiscardIcon />
               Discard
