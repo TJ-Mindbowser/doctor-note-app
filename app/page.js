@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import Notes from "./components/Notes";
 import Patients from "./components/Patient";
 import Loader from "./components/Loader";
@@ -8,6 +8,7 @@ export default function Home() {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [patientNotes, setPatientNotes] = useState([]);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -62,6 +63,7 @@ export default function Home() {
       userData[0].recentNotes = [noteData];
     }
     setNotes(notes);
+    forceUpdate()
     action();
   };
 
