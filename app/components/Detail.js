@@ -17,30 +17,34 @@ export default function Detail({ noteDetail, patientName }) {
       minute: "2-digit",
       hour12: true,
     });
-    const formattedDateTime = `${formattedDate} | ${formattedTime}`;
+    const formattedDateTime = `${formattedDate} ${formattedTime}`;
     return formattedDateTime;
   }
   return (
     <>
       {noteDetail.length && (
-        <div className="notes flex-1 h-full p-4 rounded-r-xl flex-grow p-5 border ">
-          <div className="flex justify-between">
+        <div className="notes flex-1 h-full rounded-r-xl flex-grow">
+          <div
+            className="flex justify-between border-b-2 border-[#4A4B4B]"
+            style={{ padding: "13px 32px" }}
+          >
             <div className="notes-title">
               <p className="text-2xl font-medium text-white tracking-tight">
                 {patientName}
               </p>
-              <div className="text-white tracking-tight text-sm mt-4">
-                <span className="text-gray-400">Added on :</span>{" "}
+              <div
+                className="text-white tracking-tight text-sm"
+                style={{ marginTop: "10px" }}
+              >
+                <span className="text-[#7F7F7F]">Added on :</span>{" "}
                 {pipeDate(noteDetail[0])} |
-                <span className="text-gray-400"> Last modified :</span>
+                <span className="text-[#7F7F7F]"> Last modified :</span>
                 {pipeDate(noteDetail[1])}
               </div>
             </div>
           </div>
-          <div className="notes-list text-white mt-3 p-3">
-            <div className="notes-list-description text-xs text-gray-400">
-              {noteDetail[3]}
-            </div>
+          <div className="text-white mt-3 p-3" style={{ padding: "0px 32px" }}>
+            <div className="text-xs text-[#7F7F7F]">{noteDetail[3]}</div>
           </div>
         </div>
       )}
