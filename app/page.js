@@ -8,7 +8,7 @@ export default function Home() {
   const [notes, setNotes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [patientNotes, setPatientNotes] = useState([]);
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
+  const [, forceUpdate] = useReducer(x => x + 1, 0);
   useEffect(() => {
     fetchNotes();
   }, []);
@@ -48,7 +48,7 @@ export default function Home() {
     setPatientNotes(notes[index]);
   };
 
-  const handleAddNote = (noteObj) => {
+  const handleAddNote = (noteObj, action) => {
     const { patientName } = noteObj;
     let noteData = [];
     noteData[0] = Date.now();
@@ -63,7 +63,8 @@ export default function Home() {
       userData[0].recentNotes = [noteData];
     }
     setNotes(notes);
-    forceUpdate();
+    forceUpdate()
+    action();
   };
 
   return (

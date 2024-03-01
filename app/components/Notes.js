@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import RecentIcon from "../icons/recent";
 import SortIcon from "../icons/sort";
 import Add from "./Add";
@@ -16,6 +16,7 @@ export default function Notes({ patient, handleAddNote }) {
   const [recentNotes, setRecentNotes] = useState([]);
   const [sort, setSort] = useState(true);
   const [selectedNote, setSelectedNote] = useState();
+  const [, forceUpdate] = useReducer((x) => x + 1, 0);
 
   function addEllipsis(str, limit) {
     if (str.length > limit) {
@@ -56,15 +57,19 @@ export default function Notes({ patient, handleAddNote }) {
     handleAddNote({ ...noteData, patientName }, toggleToRecent);
   };
   const toggleSort = (bool) => {
-    setSort(!bool);
+    // setSort(!bool);
+    let newNote = notes;
+    newNote.reverse();
+    setNotes([...newNote]);
   };
   const showRecent = () => {
     setShowRecentNotes(!showRecentNotes);
   };
   const toggleToRecent = () => {
-    setShowRecentNotes(true);
+    // setShowRecentNotes(true);
     setNotes(patient?.PatientNote || []);
     setRecentNotes(patient?.recentNotes || []);
+    forceUpdate();
   };
   useEffect(() => {
     setNotes(patient?.PatientNote?.reverse() || []);
@@ -106,65 +111,35 @@ export default function Notes({ patient, handleAddNote }) {
         {!notes.length && <ClipBoardIcon />}
         <div className="p-3">
           {!showRecentNotes
-            ? sort
-              ? notes.reverse().map((note, index) => {
-                  return (
-                    <>
-                      <div
-                        key={index}
-                        onClick={() => {
-                          showNoteDetail(note);
-                          setSelectedNote(index);
-                        }}
-                        className={`notes-list text-white rounded-xl ${
-                          index === selectedNote ? "list-active" : ""
-                        }`}
-                      >
-                        <div className="notes-list-name flex justify-between font-normal">
-                          <p>{note[2]}</p>
-                          <span className="text-xs text-[#7F7F7F]">
-                            {pipeDate(note[0])}
-                          </span>
-                        </div>
-                        <div className="notes-list-description text-xs text-[#7F7F7F]">
-                          {addEllipsis(note[3], 100)}
-                        </div>
+            ? notes.map((note, index) => {
+                return (
+                  <>
+                    <div
+                      key={index}
+                      onClick={() => {
+                        showNoteDetail(note);
+                        setSelectedNote(index);
+                      }}
+                      className={`notes-list text-white p-9 rounded-xl ${
+                        index === selectedNote ? "list-active" : ""
+                      }`}
+                    >
+                      <div className="notes-list-name flex justify-between font-normal">
+                        <p>{note[2]}</p>
+                        <span className="text-xs text-[#7F7F7F]">
+                          {pipeDate(note[0])}
+                        </span>
                       </div>
-                      <hr
-                        className={`${index === selectedNote ? "hidden" : ""}`}
-                      />
-                    </>
-                  );
-                })
-              : notes.map((note, index) => {
-                  return (
-                    <>
-                      <div
-                        key={index}
-                        onClick={() => {
-                          showNoteDetail(note);
-                          setSelectedNote(index);
-                        }}
-                        className={`notes-list text-white p-9 rounded-xl ${
-                          index === selectedNote ? "list-active" : ""
-                        }`}
-                      >
-                        <div className="notes-list-name flex justify-between font-normal">
-                          <p>{note[2]}</p>
-                          <span className="text-xs text-[#7F7F7F]">
-                            {pipeDate(note[0])}
-                          </span>
-                        </div>
-                        <div className="notes-list-description text-xs text-[#7F7F7F]">
-                          {addEllipsis(note[3], 100)}
-                        </div>
+                      <div className="notes-list-description text-xs text-[#7F7F7F]">
+                        {addEllipsis(note[3], 100)}
                       </div>
-                      <hr
-                        className={`${index === selectedNote ? "hidden" : ""}`}
-                      />
-                    </>
-                  );
-                })
+                    </div>
+                    <hr
+                      className={`${index === selectedNote ? "hidden" : ""}`}
+                    />
+                  </>
+                );
+              })
             : recentNotes.map((note, index) => {
                 return (
                   <>
