@@ -17,7 +17,7 @@ export default function Add({ handleAddNote }) {
       minute: "2-digit",
       hour12: true,
     });
-    const formattedDateTime = `${formattedDate} | ${formattedTime}`;
+    const formattedDateTime = `${formattedDate} ${formattedTime}`;
     return formattedDateTime;
   }
   const handleForm = () => {
@@ -50,9 +50,12 @@ export default function Add({ handleAddNote }) {
               className="text-2xl font-medium text-white bg-transparent outline-none"
               placeholder="Note Title"
             />
-            <span className="text-gray-800 text-white tracking-tight">
-              Added on: {currentDate()}
-            </span>
+            <div
+              className="text-white tracking-tight text-sm"
+              style={{ marginTop: "4px" }}
+            >
+              <span className="text-[#7F7F7F]">Added on :</span> {currentDate()}
+            </div>
           </div>
           <div className="notes-meta flex gap-2 justify-between">
             <button
